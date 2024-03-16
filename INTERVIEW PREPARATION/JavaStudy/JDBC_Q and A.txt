@@ -1,0 +1,327 @@
+1) What is JDBC?
+
+Definition of JDBC(Java Database Connectivity) 
+JDBC is an API(Application programming interface) used in Java programming to interact with databases. The classes and interfaces of JDBC allow the application to send requests made by users to the specified database. The current version of JDBC is JDBC 4.3, released on 21st September 2017.
+
+
+2) What is Latest version of JDBC available?
+The latest version, JDBC 4.3, is specified by a maintenance release 3 of JSR 221 and is included in Java SE 9.
+
+3) Explain about JDBC Architecture?
+
+The JDBC architecture consists of two-tier and three-tier processing models to access a database.
+Two-tier model: A java application communicates directly to the data source. The JDBC driver enables the communication between the application and the data source. 
+
+
+
+
+4) Explain about common JDBC Components?
+
+
+5) Explain about DriverManager?
+
+JDBC Driver Manager
+
+The JDBC DriverManager is the class in JDBC API. The objects of this class can connect Java applications to a JDBC driver. DriverManager is the very important part of the JDBC architecture.
+
+6) What is JDBC API?
+The JDBC API
+
+The JDBC API gives access of programming data from the Java. To use this, applications can execute SQL statements and retrieve results and updation to the database. The JDBC API is part of the Java platform, it includes the Java Standard Edition.
+
+
+8) Who has provided JDBC API?
+The JDBC (Java Database Connectivity) API is provided by Oracle Corporation as part of the Java Platform. It is a standard Java API for database-independent connectivity between the Java programming language and a wide range of databases
+
+
+9) What are the classes and interfaces available in JDBC API?
+Interfaces:
+
+Driver: This interface defines the methods for JDBC drivers to register themselves with the DriverManager class.
+
+Connection: This interface represents a connection to a specific database. It provides methods to create statements, commit/rollback transactions, and close the connection.
+
+Statement: This interface is used to execute SQL statements. It offers methods for executing queries, updates, and deletes.
+
+PreparedStatement: A subclass of Statement, specifically designed for pre-compiled SQL statements with placeholders for parameters. Improves performance and security by preventing SQL injection attacks.
+
+CallableStatement: Similar to PreparedStatement, but allows calling stored procedures in the database.
+
+ResultSet: This interface represents the result set of a query execution. It provides methods to navigate through the results, retrieve data by column name or index, and check for the end of the results.
+
+ResultSetMetaData: Provides information about the structure of a ResultSet, including the number of columns, their data types, and column names.
+
+DatabaseMetaData: Offers information about the database itself, such as its product name, version, supported features, and table information.
+
+RowSet (optional): A more advanced interface for handling database result sets. It allows disconnected access to data and manipulation capabilities beyond basic ResultSets.
+
+Classes:
+
+DriverManager: This class manages JDBC drivers. You use it to register drivers and obtain connections to databases.
+
+Blob: Represents a BLOB (Binary Large Object) data type in the database. Used to store binary data like images or documents.
+
+Clob: Represents a CLOB (Character Large Object) data type, used for storing large text data.
+
+Types: Provides helper methods for converting between Java data types and SQL data types
+
+
+
+
+10) Who has provided implementation of JDBC API?
+The implementation of the JDBC (Java Database Connectivity) API is typically provided by database vendors. They offer JDBC drivers that allow Java applications to connect to and interact with their specific database systems.
+
+
+11) What are the steps to write JDBC Program?
+
+Here is the 7-step process to create a Java JDBC connection:
+Import the packages: ...
+Register the drivers: ...
+Establish a connection: ...
+Create a statement: ...
+Execute the query: ...
+Retrieve results: ...
+Close the connections:
+
+
+12) What is JDBC Driver?
+A JDBC (Java Database Connectivity) driver is a software component that allows Java applications to interact with databases using the JDBC API. JDBC drivers provide an interface for Java applications to connect to different database management systems (DBMS) and execute SQL queries, statements, and transactions.
+
+
+13) How many types of JDBS Drivers available?
+Type 1: JDBC-ODBC Bridge Driver
+Type 2: Native-API Driver
+Type 3: Network Protocol Driver
+Type 4: Thin Driver (Direct-to-database Pure Java Driver): 
+
+14) Explain TYPE 1 Driver?
+ This driver uses the ODBC (Open Database Connectivity) API provided by the operating system to connect to the database. It translates JDBC calls into ODBC calls. However, it's not commonly used due to its dependence on ODBC and its limited platform independence.
+
+
+15) Which version of Java has excluded TYPE 1 Driver?
+DBC-ODBC Bridge Driver, which is a Type 1 JDBC driver, was deprecated in Java 8 and completely removed in Java 9. Therefore, Java versions 9 and onwards exclude the JDBC-ODBC Bridge Driver. Developers are encouraged to use other JDBC driver types that offer better performance and platform independence.
+
+
+
+16) I have loaded both Oracle and MySQL drivers, Which database connection will be
+established when we call getConnection(...)method?
+Ans: Based on jdbc url the Connection object will be created to the database.
+
+17) I have loaded Oracle driver and trying to get the connection with MySQL URL What
+will happen?
+
+Code:
+Class.for Name("oracle.jdbc.OracleDriver");
+con=DriverManager.getConnection("jdbc:mysql://localhost:3306/durgadb","root","root");
+Ans: We will get ClassNotFoundException
+
+18) What the DriverManager.getConnection() method doing?
+In JDBC API or in java.sql package, SUN has given more interfaces like Connection,
+Statement, ResultSet, Etc., How Instances will be created?
+
+19) Can I register the Driver Explicitly?
+
+Yes, you can register a JDBC driver explicitly in your Java application using the Class.forName() method. This method loads the JDBC driver class dynamically and registers it with the DriverManager.
+
+20) Can I unregister the Driver?
+
+In most cases, you cannot explicitly unregister a JDBC driver once it has been registered with the DriverManager. 
+
+
+21) How can i find list of drivers registered?
+ we can retrieve the list of JDBC drivers that have been registered with the DriverManager by calling the DriverManager.getDrivers() method. This method returns an Enumeration of all the currently registered JDBC drivers.
+
+
+
+22) How many types of JDBC Drivers are available? Which is best?
+There are four types of JDBC drivers available:
+Type 1: JDBC-ODBC Bridge Driver
+Type 2: Native-API Driver
+Type 3: Network Protocol Driver
+Type 4: Thin Driver (Direct-to-database Pure Java Driver): 
+Type for driver is the best Driver..
+
+
+23) Explain the cases when each driver should be used?
+
+
+24) Which Type of JDBC Driver is the Fastest One?
+Among the types of JDBC drivers, Type 4 drivers, also known as Thin Drivers or Direct-to-database Pure Java Drivers, are typically considered the fastest option.
+
+
+25) Explain two important approaches to Register a Driver?
+Using Class.forName() method − The forName() method of the class named Class accepts a class name as a String parameter and loads it into the memory, Soon the is loaded into the memory it gets registered automatically.
+
+
+26) Whenever we are using Class.forName() method to load Driver class automatically
+Driver will be Registered with DriverManager. Then what is the need of DriverManager
+class registerDriver() method.
+Ans: This method is useful whenever we are using Non-JDK Complaint Driver.
+27) Can I establish two database connections at a time?
+28) What are the difference among 3 getConnections() method?
+1) public static Connection getConnection(String url)
+2) public static Connection getConnection(String url,String uname, String pword)
+3) public static Connection getConnection(String url,Properties info)
+29) Can we specify the column name in the select statement or not?
+30) What is the use of execute() if we have the executeUpdate() or executeQuery()?
+31) What is Statement?
+32) How many types of JDBC Statements are available?
+33) In which package the statement is defined?
+34) Is there any super type defined for statement?
+35) Who is responsible to define implementation class for statement?
+36) How to get /create the object of statement type?
+37) While creating the statement do we need to provide any SQL statement?
+38) What are the methods can be used from statement to submit the SQL Query to
+database.?
+39) What is the difference among executeUpdate(), executeQuery() and execute()
+methods?
+40) How many Queries we can submit by using one statement object?
+41) How many types of queries I can submit using one statement object?
+42) When exactly SQL statement will be submitted to the database?
+43) When you submit the SQL statement to database using statement then how many
+times the SQL statement will be compiled/verified?
+44) How to use dynamic value to the SQL statement in the case of statement object?
+45) What is the PreparedStatement?
+46) In which package the PreparedStatement is defined?
+47) Is there any super type defined for PreparedStatement?
+48) Who is responsible to define implementation class for PreparedStatement?
+49) How to get/create the object of PreparedStatement type?
+50) While creating the prepared Statement do we need to provide any SQL Statement?
+51) What are the methods can be used from Prepared Statement to submit the SQL Query
+to database?
+52) How many Queries we can submit using one Prepared Statement object?
+53) How many types of queries We can submit using one PreparedStatement object?
+54) When we submit the SQL statement to database using Prepared Statement then how
+many times the SQL Statement will be compiled/vefified?
+55) How to use dynamic value to the SQL statement in the case of PreparedStatement
+object?
+56) What is the difference between Statement and PreparedStatement ?
+57) What is the benefit of PreparedStatement over Statement?
+58) What is CallableStatement?
+59) In Which package the CallableStatement is defined?
+60) Is there any super type defined for CallableStatement?
+61) Who is responsible to defined implementation class for CallableStatement?
+62) How to get/create the object of CallableStatement type?
+63) While creating the Callable Statement do we need to provide any SQL Statement?
+64) What is the purpose/benefit of CallableStatement?
+65) What are the methods can be used from CallableStatement to call the procedure from
+database?
+66) When we call the procedure from database using CallableStatement then how many
+times the SQL Statement will be compiled/verified?
+67) How to use dynamic value to the procedure in the case of CallableStatement object?
+68) How can we call the procedure from Java application using input parameter?
+69) How can you call the procedure from Java Application using output parameter of the
+procedure?
+70) How to get the value of output parameter of the procedure?
+71) Can we write different types of SQL statement in procedure?
+72) Can we submit select statement using batch update?
+73) How to get the result from the callable statement if you invoke any stored function?
+74) How can you access column information from ResultSet?
+75) Can I access Statement and ResultSet after closing the connection?
+76) What is the Batch Update? OR What is the advantage of Batch Update?
+77) How to use Batch Update with Statement?
+78) How to use Batch Update with Preparedstatement?
+79) Can I submit insert Statement using Batch Update?
+80) Can I submit update Statement using Batch Update?
+81) Can I submit delete Statement using Batch Update?
+82) Can I submit select Statement using Batch Update?
+83) Can I submit different types of SQL statement with Batch Update using Statement?
+84) Can I submit different types of SQL statement with Batch Update using Prepared
+Statement?
+85) What is Metadata?
+86) What is DatabaseMetadata?
+87) In Which package the DatabaseMetaData is available?
+88) Who has defined the implementation class for DatabaseMetaData?
+89) How can we get the object of DatabaseMetaData type?
+90) What is the use of DatabaseMetaData?
+91) How can I access the Database Product Name?
+92) How can I access the Database Product version?
+93) How can I access the Driver Name?
+94) How can I access the Driver version?
+95) How can I check whether Database supports batch update or not?
+96) How can I check whether Database supports Full Outer Join or not?
+97) What is ResultSetMetadata?
+98) In Which package the ResultSetMetadata is available.?
+99) Who has defined the implementation class for ResultSetMetadata?
+100) How to get/create the object of ResultSetMetadata type?
+101) What is the use of ResultSetMetadata type?
+102) How can I get the number of columns available in Resultset?
+103) How can I access the name & order of the columns available in Resultset?
+104) How can I access the type of the columns available in Resultset?
+105) What is transaction?
+106) What is transaction management?
+107) What is ACID properties?
+108) What will happen when auto commit is true?
+109) By using which methods we can implement Transactions in JDBC?
+110) What are the Transactional concurrency problems?
+111) Explain about Dirty Read Problem?
+112) Explain about Repeatable Read Problem?
+113) Explain about Phantom Read Problem?
+114) What are the Transactional isolation levels?
+115) Which isolation levels prevent Dirty Read Problem?
+116) Which isolation levels prevent Repeatable Read Problem?
+117) Which isolation levels prevent Phantom Read Problem?
+118) What will happen when Iam not specifying the isolation Level with JDBC?
+119) How can I get Database Vendor Specific Default Transactional Isolation Level?
+120) What is the Default Transactional Isolation Level My SQL?
+121) What is the Default Transactional Isolation Level Oracle?
+122) What are the ways to manage the Connections in JDBC?
+123) What are the advantages of DataSource Connections over Driver Manager
+connections ?
+124) What is ResultSet?
+125) In Which package , ResultSet is available.?
+126) Who has defined the implementation class of ResultSet?
+127) How can we get the Object of ResultSet Type?
+128) What does the ResultSet represent?
+129) What are the types of ResultSet available as per Cursor movement?
+130) What is forward only ResultSet?
+131) How can you get the Forward Only ResultSet?
+132) Can I call the following method with Forward Only ResultSet?
+a. previous() b. first() c. last() d. absolute() e. relative()
+133) What is Scrollable ResultSet?
+134) How can I get the Scrollable ResultSet?
+135) Can I call the following method with Scrollable ResultSet?
+ previous()
+ first()
+ last()
+ absolute()
+ relative()
+136) What are the types of Resultset available as per Operation?
+137) What are the Read Only ResultSet?
+138) How can you get the Read Only Resultset?
+139) Can I call the following method with Read Only Resultset?
+ moveTolnsertRow()
+ updateRow()
+ deleteRow()
+ insertRow()
+ updateX(int col_lndex, X value)
+140) What is updatable Resultset?
+141) How can you get the updatable Resultset?
+79. Can I call the following method with Updatable Resultset?
+ moveTolnsertRow()
+ updateRow()
+ deleteRow()
+ insertRow()
+ updateX(int col_lndex, X value)
+142) What is the default type of Resultset?
+143) What are the constants defined to specify the Resultset type?
+144) What is the default concurrency of Resultset?
+145) What are the constants defined to specify the Resultset concurrency?
+146) What is difference between Scroll SENSITIVE and INSENSITIVE?
+147) What are various Types of ResultSet based on cursor movement?
+148) What are various Types of ResultSet based on operations?
+149) What are various Types of ResultSet based on holdability?
+150) What is Rowset?
+151) What is the super type for RowSet?
+152) How to get the object of RowSet?
+153) How many types of RowSet available as per connection?
+154) How many sub types of RowSet interface available?
+155) What is the default type of RowSet?
+156) What is the default concurrency RowSet?
+157) Can I serialize the Cached RowSet?
+158) Can I serialize the JDBC RowSet?
+159) What is the difference between ResultSet and RowSet?
+160) What is the use of RowSet Factory and RowSet Provider?
+161) What are the new features of JDBC 4.0?
+162) What are the new features of JDBC 4.1?
+163) What is ResultSet holdability?

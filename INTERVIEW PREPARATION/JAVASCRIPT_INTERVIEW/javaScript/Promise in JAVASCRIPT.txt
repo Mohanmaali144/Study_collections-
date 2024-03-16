@@ -1,0 +1,95 @@
+Promise in JAVASCRIPT
+
+
+What Is Promie In js ?
+A Promise in JavaScript is a class Using this class we can create a Promis objec
+using this object we can handling asynchronous operations 
+ a powerful abstraction for managing these asynchronous operations.
+
+Pending: The initial state, where the operation has not completed yet.
+Fulfilled: The operation completed successfully.
+Rejected: The operation failed.
+
+
+const myPromise = new Promise((resolve, reject) => {
+  // Asynchronous operation here
+  if (/* operation successful */) {
+    resolve('Success');
+  } else {
+    reject('Error');
+  }
+});
+
+
+
+Once a promise is created, it can be used with .then(), .catch(), and .finally()
+
+
+
+Promise.all([promise1, promise2, promise3])
+It resolves if all the promises inside the array resolve and reject if any of the promises reject.
+
+
+
+Promise.race([promise1, promise2, promise3])
+ It will return the promise as soon as any of the promises is either resolve or reject. with the value or reason from that 
+ promise
+
+
+
+Promise.allSettled([promise1, promise2, promise3])
+is used when you want to wait for all promises in an array to settle (either resolve or reject) without stopping if some of them reject.
+This method is particularly useful when you want to know the outcomes of all promises, regardless of whether they succeeded or failed.
+
+
+
+Promise.any([promise1, promise2, promise3])
+It will resolve if any of the promises in an array are resolved with the resolved value.
+If all the promises are rejected,
+promise will be rejected with the error “AggregateError: All promises were rejected”.
+
+
+
+
+
+/-----------------------------------------------------//-------------//
+
+Javscript async/await
+
+We use the async keyword with a function to represent that the function is an asynchronous function. 
+The async function returns a promise.
+
+async keyword is used before the function to represent that the function is asynchronous.
+
+The use of await pauses the async function until the promise returns a result (resolve or reject) value.
+
+Note: You can use await only inside of async functions.
+
+
+
+
+Error Handling :
+While using the async function, you write the code in a synchronous manner. 
+And you can also use the catch() method to catch the error.
+
+asyncFunc().catch(
+    // catch error and do something
+)
+
+the other way you can handle an error is by using try/catch block. 
+
+
+
+Benefits of Using async Function :
+The code is more readable than using a callback or a promise.
+Error handling is simpler.
+Debugging is easier
+
+
+Note: These two keywords async/await were introduced in the newer version of JavaScript (ES8). 
+Some older browsers may not support the use of async/await. 
+
+
+
+
+
